@@ -1,4 +1,4 @@
-// Recipe Results Screen — Editorial Redesign
+
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -41,7 +41,7 @@ export default function RecipeResultsScreen() {
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
-      {/* Editorial Top Bar */}
+      
       <View style={styles.header}>
         <TouchableOpacity
           onPress={() => router.back()}
@@ -60,7 +60,7 @@ export default function RecipeResultsScreen() {
         </View>
       </View>
 
-      {/* Sommelier / AI Notice */}
+      
       {recipeNotice ? (
         <View style={styles.noticeBox}>
           <Sparkles size={14} color={Colors.accent} />

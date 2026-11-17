@@ -1,4 +1,4 @@
-// Saved recipes tab — Editorial Collection Redesign
+
 import React, { useState } from 'react';
 import { View, Text, FlatList, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -22,7 +22,7 @@ export default function SavedScreen() {
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
-      {/* Editorial Header */}
+      
       <View style={styles.header}>
         <View>
           <Text style={styles.title}>Saved Recipes</Text>

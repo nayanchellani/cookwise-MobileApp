@@ -1,4 +1,4 @@
-// Ingredient confirmation screen — Editorial Kitchen Redesign
+
 import React, { useState } from 'react';
 import {
   View,

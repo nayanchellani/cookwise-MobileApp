@@ -1,4 +1,3 @@
-// Recipe Details Screen — Animated Editorial Cookbook Experience
 import React, { useState, useRef } from 'react';
 import {
   View,
@@ -10,7 +9,7 @@ import {
   Animated,
   Pressable,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams, router } from 'expo-router';
 import {
   ArrowLeft,
@@ -25,17 +24,20 @@ import { Colors } from '../../src/constants/colors';
 import { Spacing, Radius, FontSize, FontWeight, Typography, Shadows } from '../../src/constants/theme';
 import { PrimaryButton } from '../../src/components/PrimaryButton';
 import { getRecipeImage } from '../../src/constants/images';
+import { EDITORIAL_RECIPES } from '../../src/constants/editorialRecipes';
 import { useAppStore } from '../../src/store/appStore';
 import { triggerNotification, triggerSelection } from '../../src/utils/haptics';
 import type { Recipe } from '../../src/types/api';
 
 export default function RecipeDetailsScreen() {
+  const insets = useSafeAreaInsets();
   const { name } = useLocalSearchParams<{ name: string }>();
   const { state, dispatch } = useAppStore();
 
   const recipe: Recipe | undefined =
     state.recipeResults.find((r) => r.name === name) ||
-    state.savedRecipes.find((r) => r.name === name);
+    state.savedRecipes.find((r) => r.name === name) ||
+    EDITORIAL_RECIPES.find((r) => r.name === name);
 
   const [checkedIngredients, setCheckedIngredients] = useState<Record<number, boolean>>({});
   const heartScaleAnim = useRef(new Animated.Value(1)).current;
@@ -45,7 +47,7 @@ export default function RecipeDetailsScreen() {
       <SafeAreaView style={styles.safe} edges={['top']}>
         <View style={styles.errorContainer}>
           <Text style={styles.errorTitle}>Recipe Unavailable</Text>
-          <Text style={styles.errorMsg}>We could not retrieve the culinary profile for this entry.</Text>
+          <Text style={styles.errorMsg}>We could not retrieve the recipe details for this dish.</Text>
           <PrimaryButton title="Return to Discovery" onPress={() => router.back()} size="md" />
         </View>
       </SafeAreaView>
@@ -53,7 +55,7 @@ export default function RecipeDetailsScreen() {
   }
 
   const isSaved = state.savedRecipes.some((r) => r.name === recipe.name);
-  const imageUrl = getRecipeImage(recipe.cuisine);
+  const imageUrl = getRecipeImage(recipe.cuisine, recipe.name);
 
   function toggleSave() {
     if (!recipe) return;
@@ -93,8 +95,7 @@ export default function RecipeDetailsScreen() {
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
-      {/* Top Floating Action Bar */}
-      <View style={styles.topBar}>
+      <View style={[styles.topBar, { top: Math.max(insets.top, 14) + 6 }]}>
         <TouchableOpacity
           onPress={() => router.back()}
           style={styles.circleBtn}
@@ -121,8 +122,13 @@ export default function RecipeDetailsScreen() {
         </View>
       </View>
 
-      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Editorial Food Photograph */}
+      <ScrollView
+        contentContainerStyle={[
+          styles.content,
+          { paddingBottom: Math.max(insets.bottom, 16) + 40 },
+        ]}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={styles.heroWrapper}>
           <Image source={{ uri: imageUrl }} style={styles.heroImage} resizeMode="cover" />
           <View style={styles.cuisineTag}>
@@ -130,45 +136,42 @@ export default function RecipeDetailsScreen() {
           </View>
         </View>
 
-        {/* Recipe Heading & Metadata */}
         <View style={styles.headingSection}>
           <Text style={styles.title}>{recipe.name}</Text>
           {recipe.description ? <Text style={styles.desc}>{recipe.description}</Text> : null}
 
-          {/* Understated Metrics Bar */}
           <View style={styles.metricsBar}>
             <View style={styles.metricItem}>
-              <Clock size={16} color={Colors.primary} />
-              <View>
-                <Text style={styles.metricPrimary}>{recipe.total_min} min</Text>
-                <Text style={styles.metricSecondary}>
-                  {recipe.prep_min}m prep · {recipe.cook_min}m cook
-                </Text>
+              <View style={styles.metricIconWrap}>
+                <Clock size={16} color={Colors.primary} />
               </View>
+              <Text style={styles.metricPrimary}>{recipe.total_min} min</Text>
+              <Text style={styles.metricSecondary} numberOfLines={1}>
+                {recipe.prep_min > 0 ? `${recipe.prep_min}m prep · ${recipe.cook_min}m cook` : 'Total cook'}
+              </Text>
             </View>
 
             <View style={styles.metricDivider} />
 
             <View style={styles.metricItem}>
-              <Flame size={16} color={Colors.primary} />
-              <View>
-                <Text style={styles.metricPrimary}>{recipe.calories} kcal</Text>
-                <Text style={styles.metricSecondary}>per serving</Text>
+              <View style={styles.metricIconWrap}>
+                <Flame size={16} color={Colors.primary} />
               </View>
+              <Text style={styles.metricPrimary}>{recipe.calories} kcal</Text>
+              <Text style={styles.metricSecondary} numberOfLines={1}>per serving</Text>
             </View>
 
             <View style={styles.metricDivider} />
 
             <View style={styles.metricItem}>
-              <Users size={16} color={Colors.primary} />
-              <View>
-                <Text style={styles.metricPrimary}>{recipe.servings} portions</Text>
-                <Text style={styles.metricSecondary}>{recipe.difficulty}</Text>
+              <View style={styles.metricIconWrap}>
+                <Users size={16} color={Colors.primary} />
               </View>
+              <Text style={styles.metricPrimary}>{recipe.servings} portions</Text>
+              <Text style={styles.metricSecondary} numberOfLines={1}>{recipe.difficulty || 'Easy'}</Text>
             </View>
           </View>
 
-          {/* Macronutrient Breakdown */}
           {recipe.macros && (
             <View style={styles.macroCard}>
               <Text style={styles.macroHeading}>ESTIMATED NUTRITIONAL PROFILE</Text>
@@ -189,7 +192,6 @@ export default function RecipeDetailsScreen() {
             </View>
           )}
 
-          {/* Ingredients Checklist with Progress Feedback */}
           <View style={styles.sectionContainer}>
             <View style={styles.sectionHeadingRow}>
               <Text style={styles.sectionHeading}>Ingredients</Text>
@@ -198,7 +200,6 @@ export default function RecipeDetailsScreen() {
               </Text>
             </View>
 
-            {/* Preparation Progress Bar */}
             <View style={styles.progressTrack}>
               <View
                 style={[
@@ -240,9 +241,8 @@ export default function RecipeDetailsScreen() {
             </View>
           </View>
 
-          {/* Step-by-Step Cooking Instructions */}
           <View style={styles.sectionContainer}>
-            <Text style={styles.sectionHeading}>Preparation & Culinary Method</Text>
+            <Text style={styles.sectionHeading}>Preparation & Instructions</Text>
 
             <View style={styles.stepsWrapper}>
               {recipe.steps.map((step, idx) => (
@@ -268,9 +268,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: Spacing.lg,
-    paddingVertical: Spacing.sm,
     position: 'absolute',
-    top: 40,
     left: 0,
     right: 0,
     zIndex: 10,
@@ -345,30 +343,35 @@ const styles = StyleSheet.create({
     borderRadius: Radius.md,
     borderWidth: 1,
     borderColor: Colors.border,
-    padding: Spacing.md,
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.xs,
     ...Shadows.subtle,
   },
   metricItem: {
     flex: 1,
-    flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.sm,
+    justifyContent: 'center',
+    paddingHorizontal: 2,
+    gap: 3,
+  },
+  metricIconWrap: {
+    marginBottom: 1,
   },
   metricPrimary: {
     fontSize: FontSize.sm,
     fontWeight: FontWeight.semibold,
     color: Colors.textPrimary,
+    textAlign: 'center',
   },
   metricSecondary: {
     fontSize: FontSize.xxs,
     color: Colors.textSecondary,
-    marginTop: 1,
+    textAlign: 'center',
   },
   metricDivider: {
     width: 1,
-    height: 28,
+    height: 36,
     backgroundColor: Colors.border,
-    marginHorizontal: Spacing.xs,
   },
 
   macroCard: {
@@ -416,28 +419,25 @@ const styles = StyleSheet.create({
     alignItems: 'baseline',
   },
   sectionHeading: {
-    ...Typography.h3,
-    fontSize: FontSize.lg,
-    color: Colors.textPrimary,
+    ...Typography.h2,
+    fontSize: FontSize.md + 1,
   },
   sectionCount: {
     fontSize: FontSize.xs,
     color: Colors.textSecondary,
     fontWeight: FontWeight.medium,
   },
-
   progressTrack: {
     height: 4,
-    backgroundColor: Colors.border,
     borderRadius: Radius.full,
+    backgroundColor: Colors.backgroundSage,
     overflow: 'hidden',
-    marginBottom: Spacing.xxs,
   },
   progressFill: {
     height: '100%',
     backgroundColor: Colors.primary,
+    borderRadius: Radius.full,
   },
-
   cardWrapper: {
     backgroundColor: Colors.surface,
     borderRadius: Radius.md,
@@ -462,7 +462,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: FontSize.sm,
     color: Colors.textPrimary,
-    fontWeight: FontWeight.medium,
   },
   ingNameChecked: {
     color: Colors.textSecondary,

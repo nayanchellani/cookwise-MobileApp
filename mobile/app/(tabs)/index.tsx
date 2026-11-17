@@ -32,7 +32,7 @@ import {
   Shadows,
 } from '../../src/constants/theme';
 import { PrimaryButton } from '../../src/components/PrimaryButton';
-import { CUISINE_IMAGES } from '../../src/constants/images';
+import { CUISINE_IMAGES, getRecipeImage } from '../../src/constants/images';
 import { triggerSelection } from '../../src/utils/haptics';
 
 const { width: SCREEN_W } = Dimensions.get('window');
@@ -42,53 +42,53 @@ const CARD_GAP = 14;
 const EDITORIAL_RECIPES = [
   {
     id: '1',
-    name: 'Palak Paneer with Spiced Ghee',
+    name: 'Paneer Makhani with Spiced Ghee',
     cuisine: 'Indian',
     time: '30 min',
     calories: '320 kcal',
     difficulty: 'Easy',
     diet: 'Vegetarian',
-    image: CUISINE_IMAGES.Indian,
+    image: getRecipeImage('Indian', 'Paneer Makhani with Spiced Ghee'),
   },
   {
     id: '2',
-    name: 'Rigatoni all’Arrabbiata',
+    name: 'Fusilli all’Arrabbiata',
     cuisine: 'Italian',
     time: '25 min',
     calories: '410 kcal',
     difficulty: 'Easy',
     diet: 'Vegan',
-    image: CUISINE_IMAGES.Italian,
+    image: getRecipeImage('Italian', 'Fusilli all’Arrabbiata'),
   },
   {
     id: '3',
-    name: 'Crispy Skinned Salmon Bowl',
+    name: 'Crispy Skinned Salmon Fillet',
     cuisine: 'Asian',
     time: '20 min',
-    calories: '380 kcal',
+    calories: '480 kcal',
     difficulty: 'Medium',
     diet: 'Pescatarian',
-    image: CUISINE_IMAGES.Asian,
+    image: getRecipeImage('Asian', 'Crispy Skinned Salmon Fillet'),
   },
   {
     id: '4',
-    name: 'Charred Baja Fish Tacos',
+    name: 'Charred Baja Avocado Tacos',
     cuisine: 'Mexican',
-    time: '35 min',
-    calories: '450 kcal',
-    difficulty: 'Medium',
-    diet: 'Pescatarian',
-    image: CUISINE_IMAGES.Mexican,
+    time: '25 min',
+    calories: '360 kcal',
+    difficulty: 'Easy',
+    diet: 'Vegetarian',
+    image: getRecipeImage('Mexican', 'Charred Baja Avocado Tacos'),
   },
   {
     id: '5',
-    name: 'Sun-dried Tomato & Lentil Stew',
-    cuisine: 'Mediterranean',
-    time: '45 min',
-    calories: '290 kcal',
+    name: 'Seared Tofu & Edamame Poke Bowl',
+    cuisine: 'Asian',
+    time: '20 min',
+    calories: '340 kcal',
     difficulty: 'Easy',
     diet: 'Vegan',
-    image: CUISINE_IMAGES.Mediterranean,
+    image: getRecipeImage('Asian', 'Seared Tofu & Edamame Poke Bowl'),
   },
 ];
 
@@ -128,7 +128,6 @@ export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
-  // Entrance animations (run once on mount, smooth & fast 300-400ms)
   const headerAnim = useRef(new Animated.Value(0)).current;
   const searchAnim = useRef(new Animated.Value(0)).current;
   const heroAnim = useRef(new Animated.Value(0)).current;
@@ -172,7 +171,7 @@ export default function HomeScreen() {
         contentContainerStyle={[styles.content, { paddingTop: Math.max(insets.top > 0 ? 4 : 12, 8) }]}
         showsVerticalScrollIndicator={false}
       >
-        {/* ── Editorial Header (Animated with generous status bar breathing room) ── */}
+        
         <Animated.View
           style={[
             styles.header,
@@ -203,7 +202,6 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </Animated.View>
 
-        {/* ── Refined Search Input (Animated & Focus State) ── */}
         <Animated.View
           style={[
             styles.searchRow,
@@ -237,7 +235,6 @@ export default function HomeScreen() {
           />
         </Animated.View>
 
-        {/* ── Hero Feature: Ingredient Vision (Clean, non-clipped action bar) ── */}
         <Animated.View
           style={[
             styles.heroContainer,
@@ -267,7 +264,6 @@ export default function HomeScreen() {
               tailored culinary recipes in seconds.
             </Text>
 
-            {/* Seamless, unclipped action buttons */}
             <View style={styles.heroCtas}>
               <TouchableOpacity
                 style={styles.heroPrimaryBtn}
@@ -291,7 +287,6 @@ export default function HomeScreen() {
           </View>
         </Animated.View>
 
-        {/* ── Utilities Grid (Staggered Animation) ── */}
         <Animated.View
           style={[
             {
@@ -335,7 +330,7 @@ export default function HomeScreen() {
           </View>
         </Animated.View>
 
-        {/* ── Editorial Discovery Section (Proportional peek carousel) ── */}
+        
         <Animated.View
           style={[
             {
@@ -370,7 +365,9 @@ export default function HomeScreen() {
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={styles.editorialCard}
-                onPress={() => router.push('/scan')}
+                onPress={() =>
+                  router.push({ pathname: '/recipes/details', params: { name: item.name } })
+                }
                 activeOpacity={0.9}
               >
                 <View style={styles.cardImageWrapper}>

@@ -10,11 +10,14 @@
         "buildType": "apk"
       },
       "env": {
-        "EXPO_PUBLIC_API_URL": "http://10.0.2.2:8000"
+        "EXPO_PUBLIC_API_URL": "https://cookwise-mobileapp.onrender.com"
       }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://cookwise-mobileapp.onrender.com"
+      }
     }
   },
   "submit": {

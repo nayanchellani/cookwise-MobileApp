@@ -1,16 +1,11 @@
 import axios from 'axios';
 import Constants from 'expo-constants';
 
-// Intelligent Base URL resolution:
-// 1. Explicit EXPO_PUBLIC_API_URL if defined
-// 2. Host URI from Expo Constants (auto-detects developer machine IP when testing via Expo Go)
-// 3. Fallback to 192.168.1.6:8000 or 10.0.2.2:8000 for emulator
 function resolveBaseUrl(): string {
   if (process.env.EXPO_PUBLIC_API_URL) {
     return process.env.EXPO_PUBLIC_API_URL;
   }
 
-  // When running inside Expo Go, Constants.expoConfig?.hostUri or experienceUrl has the dev machine IP
   const hostUri = Constants.expoConfig?.hostUri;
   if (hostUri) {
     const ip = hostUri.split(':')[0];
@@ -28,7 +23,7 @@ console.log('[CookWise API] Configured baseURL:', BASE_URL);
 
 export const apiClient = axios.create({
   baseURL: BASE_URL,
-  timeout: 90_000, // Gemini LLM synthesis can take ~15-30s
+  timeout: 90_000, 
   headers: { Accept: 'application/json' },
 });
 

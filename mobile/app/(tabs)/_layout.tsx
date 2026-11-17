@@ -1,4 +1,4 @@
-// Tab navigator — Editorial styling with Lucide icons & Android gesture bar inset support
+
 import React from 'react';
 import { Tabs } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

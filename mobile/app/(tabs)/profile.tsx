@@ -1,4 +1,4 @@
-// Profile & Preferences screen — Editorial Redesign
+
 import React, { useState } from 'react';
 import {
   View,
@@ -44,7 +44,7 @@ export default function ProfileScreen() {
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Editorial Profile Header */}
+        
         <View style={styles.profileHeader}>
           <View style={styles.avatar}>
             <User size={26} color={Colors.primary} strokeWidth={1.75} />

@@ -1,4 +1,4 @@
-// Manual AI Recipe Generator — Editorial Redesign
+
 import React, { useState } from 'react';
 import {
   View,

@@ -1,4 +1,4 @@
-// Smart Grocery List Screen — Usability-First Redesign
+
 import React, { useState } from 'react';
 import {
   View,

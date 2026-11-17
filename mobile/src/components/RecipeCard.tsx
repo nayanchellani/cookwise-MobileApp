@@ -33,12 +33,10 @@ export function RecipeCard({
   compact = false,
 }: Props) {
   const [imageError, setImageError] = useState(false);
-  const imageUrl = getRecipeImage(recipe.cuisine);
+  const imageUrl = getRecipeImage(recipe.cuisine, recipe.name);
   const accentColor = CUISINE_COLORS[recipe.cuisine] ?? CUISINE_COLORS.default;
 
-  // Press Scale Animation
   const scaleAnim = useRef(new Animated.Value(1)).current;
-  // Heart Scale Animation
   const heartScaleAnim = useRef(new Animated.Value(1)).current;
 
   const handlePressIn = () => {
@@ -67,7 +65,7 @@ export function RecipeCard({
       triggerSelection();
     }
 
-    // Micro-bounce on heart icon
+    
     Animated.sequence([
       Animated.timing(heartScaleAnim, {
         toValue: 1.35,
@@ -92,7 +90,7 @@ export function RecipeCard({
         onPressOut={handlePressOut}
         onPress={onPress}
       >
-        {/* Editorial Photography Header */}
+        
         <View style={styles.imageContainer}>
           {!imageError ? (
             <Image
@@ -130,7 +128,7 @@ export function RecipeCard({
           )}
         </View>
 
-        {/* Editorial Content Body */}
+        
         <View style={styles.body}>
           <Text style={styles.name} numberOfLines={compact ? 1 : 2}>
             {recipe.name}

@@ -1,6 +1,3 @@
-// CookWise AI — Official Design System (locked)
-// Do not add brand colors without a clear functional reason.
-
 export const Colors = {
   // Primary
   primary: '#245C43',

@@ -1,5 +1,3 @@
-// CookWise AI — Design tokens: spacing, typography, radii, shadows
-// Editorial Kitchen aesthetic: refined radii, restrained shadows, mature typography
 import { Colors } from './colors';
 export { Colors };
 
@@ -48,7 +46,6 @@ export const LineHeight = {
   relaxed: 1.65,
 };
 
-// Subtle, elegant editorial shadows (whisper-soft elevation)
 export const Shadows = {
   card: {
     shadowColor: '#202820',
@@ -73,7 +70,6 @@ export const Shadows = {
   },
 } as const;
 
-// Typography helpers — editorial hierarchy
 export const Typography = {
   h1: {
     fontSize: FontSize.h1,

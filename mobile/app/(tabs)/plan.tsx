@@ -1,4 +1,4 @@
-// Plan tab — Weekly Meal Planner (Editorial Kitchen Redesign)
+
 import React, { useState } from 'react';
 import {
   View,
@@ -29,9 +29,9 @@ export default function PlanScreen() {
   const { state, dispatch } = useAppStore();
   const [days, setDays] = useState<number>(7);
   const [budget, setBudget] = useState<number>(75);
-  const [diet, setDiet] = useState<Diet>('Vegetarian');
+  const [diet, setDiet] = useState<Diet>(state.profile.dietaryPreference as Diet);
   const [slots, setSlots] = useState<Slot[]>(['breakfast', 'lunch', 'dinner']);
-  const [servings, setServings] = useState(2);
+  const [servings, setServings] = useState(state.profile.defaultServings);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 

@@ -3,7 +3,6 @@ import type { IngredientNames } from '../types/api';
 
 export async function scanIngredients(imageUri: string): Promise<IngredientNames> {
   const form = new FormData();
-  // React Native FormData accepts this object shape for file blobs
   form.append('image', {
     uri: imageUri,
     name: 'scan.jpg',
