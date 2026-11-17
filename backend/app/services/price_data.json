@@ -1,0 +1,472 @@
+{
+ "_note": "Approximate US grocery prices in USD, hand-estimated for a prototype. Not live data.",
+ "countries": {
+  "US": {
+   "currency": "USD",
+   "symbol": "$"
+  }
+ },
+ "items": {
+  "tomato": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 3.5,
+   "pcs_g": 120
+  },
+  "onion": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 1.8,
+   "pcs_g": 150
+  },
+  "potato": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 1.8,
+   "pcs_g": 170
+  },
+  "carrot": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 1.7,
+   "pcs_g": 70
+  },
+  "spinach": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 9
+  },
+  "cucumber": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 3,
+   "pcs_g": 300
+  },
+  "bell pepper": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 5,
+   "pcs_g": 150
+  },
+  "garlic": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 9,
+   "pcs_g": 5
+  },
+  "ginger": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 8
+  },
+  "broccoli": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 4
+  },
+  "cauliflower": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 3.5
+  },
+  "cabbage": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 1.8
+  },
+  "lettuce": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 5
+  },
+  "mushroom": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 8
+  },
+  "zucchini": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 3,
+   "pcs_g": 200
+  },
+  "eggplant": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 3.5,
+   "pcs_g": 300
+  },
+  "pea": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 4
+  },
+  "corn": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 4
+  },
+  "sweet potato": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 2.5,
+   "pcs_g": 250
+  },
+  "green bean": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 5
+  },
+  "celery": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 3
+  },
+  "chili": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 8,
+   "pcs_g": 10
+  },
+  "kale": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 8
+  },
+  "coriander": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 12
+  },
+  "cilantro": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 12
+  },
+  "parsley": {
+   "category": "Vegetables",
+   "unit": "kg",
+   "price": 12
+  },
+  "apple": {
+   "category": "Fruits",
+   "unit": "kg",
+   "price": 3.5,
+   "pcs_g": 180
+  },
+  "banana": {
+   "category": "Fruits",
+   "unit": "kg",
+   "price": 1.5,
+   "pcs_g": 120
+  },
+  "lemon": {
+   "category": "Fruits",
+   "unit": "kg",
+   "price": 5,
+   "pcs_g": 100
+  },
+  "lime": {
+   "category": "Fruits",
+   "unit": "kg",
+   "price": 6,
+   "pcs_g": 60
+  },
+  "avocado": {
+   "category": "Fruits",
+   "unit": "kg",
+   "price": 6,
+   "pcs_g": 200
+  },
+  "orange": {
+   "category": "Fruits",
+   "unit": "kg",
+   "price": 3,
+   "pcs_g": 150
+  },
+  "berry": {
+   "category": "Fruits",
+   "unit": "kg",
+   "price": 12
+  },
+  "mango": {
+   "category": "Fruits",
+   "unit": "kg",
+   "price": 4,
+   "pcs_g": 300
+  },
+  "egg": {
+   "category": "Dairy & Eggs",
+   "unit": "pcs",
+   "price": 0.35,
+   "pcs_g": 50
+  },
+  "milk": {
+   "category": "Dairy & Eggs",
+   "unit": "l",
+   "price": 1.1
+  },
+  "cheese": {
+   "category": "Dairy & Eggs",
+   "unit": "kg",
+   "price": 12
+  },
+  "butter": {
+   "category": "Dairy & Eggs",
+   "unit": "kg",
+   "price": 10
+  },
+  "yogurt": {
+   "category": "Dairy & Eggs",
+   "unit": "kg",
+   "price": 3
+  },
+  "cream": {
+   "category": "Dairy & Eggs",
+   "unit": "l",
+   "price": 6
+  },
+  "paneer": {
+   "category": "Dairy & Eggs",
+   "unit": "kg",
+   "price": 12
+  },
+  "chicken breast": {
+   "category": "Meat & Fish",
+   "unit": "kg",
+   "price": 9
+  },
+  "chicken thigh": {
+   "category": "Meat & Fish",
+   "unit": "kg",
+   "price": 6.5
+  },
+  "chicken": {
+   "category": "Meat & Fish",
+   "unit": "kg",
+   "price": 7
+  },
+  "ground beef": {
+   "category": "Meat & Fish",
+   "unit": "kg",
+   "price": 11
+  },
+  "beef": {
+   "category": "Meat & Fish",
+   "unit": "kg",
+   "price": 14
+  },
+  "pork": {
+   "category": "Meat & Fish",
+   "unit": "kg",
+   "price": 8
+  },
+  "salmon": {
+   "category": "Meat & Fish",
+   "unit": "kg",
+   "price": 22
+  },
+  "shrimp": {
+   "category": "Meat & Fish",
+   "unit": "kg",
+   "price": 18
+  },
+  "fish": {
+   "category": "Meat & Fish",
+   "unit": "kg",
+   "price": 14
+  },
+  "bacon": {
+   "category": "Meat & Fish",
+   "unit": "kg",
+   "price": 13
+  },
+  "tuna": {
+   "category": "Meat & Fish",
+   "unit": "kg",
+   "price": 15
+  },
+  "rice": {
+   "category": "Grains & Pasta",
+   "unit": "kg",
+   "price": 2.2
+  },
+  "pasta": {
+   "category": "Grains & Pasta",
+   "unit": "kg",
+   "price": 2.5
+  },
+  "spaghetti": {
+   "category": "Grains & Pasta",
+   "unit": "kg",
+   "price": 2.5
+  },
+  "noodle": {
+   "category": "Grains & Pasta",
+   "unit": "kg",
+   "price": 3.5
+  },
+  "flour": {
+   "category": "Grains & Pasta",
+   "unit": "kg",
+   "price": 1.5
+  },
+  "oat": {
+   "category": "Grains & Pasta",
+   "unit": "kg",
+   "price": 3
+  },
+  "bread": {
+   "category": "Grains & Pasta",
+   "unit": "kg",
+   "price": 3.5,
+   "pcs_g": 40
+  },
+  "quinoa": {
+   "category": "Grains & Pasta",
+   "unit": "kg",
+   "price": 7
+  },
+  "tortilla": {
+   "category": "Grains & Pasta",
+   "unit": "kg",
+   "price": 5,
+   "pcs_g": 40
+  },
+  "couscous": {
+   "category": "Grains & Pasta",
+   "unit": "kg",
+   "price": 4
+  },
+  "lentil": {
+   "category": "Pantry",
+   "unit": "kg",
+   "price": 3.5
+  },
+  "chickpea": {
+   "category": "Pantry",
+   "unit": "kg",
+   "price": 3
+  },
+  "bean": {
+   "category": "Pantry",
+   "unit": "kg",
+   "price": 3
+  },
+  "tofu": {
+   "category": "Pantry",
+   "unit": "kg",
+   "price": 6
+  },
+  "sugar": {
+   "category": "Pantry",
+   "unit": "kg",
+   "price": 1.8
+  },
+  "honey": {
+   "category": "Pantry",
+   "unit": "kg",
+   "price": 9
+  },
+  "olive oil": {
+   "category": "Pantry",
+   "unit": "l",
+   "price": 9
+  },
+  "oil": {
+   "category": "Pantry",
+   "unit": "l",
+   "price": 3.5
+  },
+  "soy sauce": {
+   "category": "Pantry",
+   "unit": "l",
+   "price": 6
+  },
+  "vinegar": {
+   "category": "Pantry",
+   "unit": "l",
+   "price": 3
+  },
+  "coconut milk": {
+   "category": "Pantry",
+   "unit": "l",
+   "price": 4
+  },
+  "stock": {
+   "category": "Pantry",
+   "unit": "l",
+   "price": 3
+  },
+  "tomato sauce": {
+   "category": "Pantry",
+   "unit": "l",
+   "price": 3
+  },
+  "peanut butter": {
+   "category": "Pantry",
+   "unit": "kg",
+   "price": 6
+  },
+  "nut": {
+   "category": "Pantry",
+   "unit": "kg",
+   "price": 14
+  },
+  "salt": {
+   "category": "Spices",
+   "unit": "kg",
+   "price": 1
+  },
+  "pepper": {
+   "category": "Spices",
+   "unit": "kg",
+   "price": 25
+  },
+  "black pepper": {
+   "category": "Spices",
+   "unit": "kg",
+   "price": 25
+  },
+  "cumin": {
+   "category": "Spices",
+   "unit": "kg",
+   "price": 20
+  },
+  "turmeric": {
+   "category": "Spices",
+   "unit": "kg",
+   "price": 18
+  },
+  "paprika": {
+   "category": "Spices",
+   "unit": "kg",
+   "price": 20
+  },
+  "oregano": {
+   "category": "Spices",
+   "unit": "kg",
+   "price": 25
+  },
+  "garam masala": {
+   "category": "Spices",
+   "unit": "kg",
+   "price": 25
+  },
+  "chili powder": {
+   "category": "Spices",
+   "unit": "kg",
+   "price": 20
+  },
+  "cinnamon": {
+   "category": "Spices",
+   "unit": "kg",
+   "price": 25
+  },
+  "basil": {
+   "category": "Spices",
+   "unit": "kg",
+   "price": 20
+  }
+ }
+}
