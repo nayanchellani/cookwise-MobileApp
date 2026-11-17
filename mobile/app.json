@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "CookWise AI",
+    "slug": "cookwise-ai",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "cookwise",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.cookwiseai.app"
+    },
+    "android": {
+      "package": "com.cookwiseai.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundColor": "#245C43"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "CookWise AI needs access to your photos to scan ingredients.",
+          "cameraPermission": "CookWise AI uses your camera to identify ingredients."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

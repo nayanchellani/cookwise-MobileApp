@@ -1,15 +1,26 @@
 from fastapi import HTTPException
 
 from app.schemas.meal import AIPlan, DayOut, MealOut, MealPlan, MealPlanRequest
-from app.services import catalog
+from app.services import catalog, dietary
 from app.services.gemini_service import generate_structured
+
+
+_DIET_RULES = (
+    "Dietary rules must be strictly enforced:\n"
+    "- If Vegetarian: NEVER include any meat, chicken, poultry, beef, pork, bacon, fish, seafood, gelatin, or lard. "
+    "Eggs and dairy (milk, cheese, yogurt, paneer, butter) are allowed ONLY if the user permits, but absolutely NO meat or poultry.\n"
+    "- If Vegan: NEVER include meat, poultry, fish, seafood, eggs, dairy, cheese, butter, or honey. Plant-based only.\n"
+    "- If Non-vegetarian: Any ingredients allowed.\n"
+)
 
 
 def generate_meal_plan(req: MealPlanRequest) -> MealPlan:
     cur = catalog.currency(req.country)
     prompt = (
         f"Create a {req.days}-day meal plan with these meals per day: {', '.join(req.meals)}. "
-        f"Diet: {req.diet} (follow strictly). Servings per meal: {req.servings}. "
+        f"Diet: {req.diet}. {_DIET_RULES} "
+        f"CRITICAL: The user has selected '{req.diet}'. Every single meal and ingredient MUST comply with {req.diet}. "
+        f"Servings per meal: {req.servings}. "
         f"Total grocery budget for the whole plan: {cur['symbol']}{req.budget:.0f} ({req.country.upper()} prices), "
         "so reuse ingredients across days and keep it affordable. "
         "Use slot values exactly: breakfast, lunch, dinner (lowercase). Days numbered from 1. "
