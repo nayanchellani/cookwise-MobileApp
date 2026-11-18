@@ -1,1 +1,0 @@
-# cookwise-MobileApp
